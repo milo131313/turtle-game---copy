@@ -451,7 +451,7 @@ function quest (num: number) {
         false
         )
     } else if (MessagesReceived > 3) {
-        mySprite.sayText(":)")
+        mySprite.sayText("MINSTER SHADY I got the stuff with me what is next?", 2000, false)
     }
     MessagesReceived += 1
 }
