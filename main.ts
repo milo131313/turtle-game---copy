@@ -111,20 +111,25 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     } else if (mySprite.tileKindAt(TileDirection.Top, assets.tile`myTile7`)) {
         collect()
         game.splash("you have collected the seagrass and rock")
+        MessagesReceived += 4
     } else if (mySprite.tileKindAt(TileDirection.Left, assets.tile`myTile0`)) {
         quest(1)
     } else if (mySprite.tileKindAt(TileDirection.Left, assets.tile`myTile7`)) {
         collect()
         game.splash("you have collected the seagrass and rock")
+        MessagesReceived += 4
     } else if (mySprite.tileKindAt(TileDirection.Right, assets.tile`myTile7`)) {
         collect()
         game.splash("you have collected the seagrass and rock")
+        MessagesReceived += 4
     } else if (mySprite.tileKindAt(TileDirection.Bottom, assets.tile`myTile7`)) {
         collect()
         game.splash("you have collected the seagrass and rock")
+        MessagesReceived += 4
     } else if (mySprite.tileKindAt(TileDirection.Center, assets.tile`myTile7`)) {
         collect()
         game.splash("you have collected the seagrass and rock")
+        MessagesReceived += 4
     }
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -234,27 +239,6 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     true
     )
 })
-function p () {
-    plastic = sprites.create(img`
-        6 1 1 1 1 6 1 1 1 1 1 6 1 1 1 1 
-        6 1 6 6 1 6 1 6 6 6 1 6 1 6 6 1 
-        8 1 6 8 1 6 1 6 6 6 1 6 1 6 6 1 
-        6 1 6 6 1 8 1 6 6 6 1 6 1 6 6 1 
-        6 1 1 1 1 6 1 1 1 1 1 9 1 1 1 1 
-        9 9 1 1 6 9 6 1 1 1 6 9 6 1 1 8 
-        9 8 1 1 1 1 1 1 1 1 1 1 1 1 1 8 
-        9 9 1 1 1 1 1 1 1 1 1 1 1 1 1 9 
-        8 8 1 1 1 1 1 1 1 1 1 1 1 1 1 9 
-        9 9 1 1 1 1 1 1 1 1 1 1 1 1 1 8 
-        8 9 1 1 9 8 9 1 1 1 9 8 9 1 1 9 
-        9 1 1 1 1 9 1 1 1 1 1 9 1 1 1 1 
-        9 1 9 9 1 9 1 9 9 9 1 9 1 9 8 1 
-        8 1 9 8 1 9 1 9 8 9 1 9 1 8 8 1 
-        9 1 8 9 1 8 1 9 9 8 1 9 1 9 9 1 
-        9 1 1 1 1 9 1 1 1 1 1 9 1 1 1 1 
-        `, SpriteKind.Enemy)
-    tiles.placeOnTile(plastic, tiles.getTileLocation(55, 1))
-}
 function setupGame () {
     mySprite = sprites.create(img`
         ................................
@@ -466,6 +450,8 @@ function quest (num: number) {
         2000,
         false
         )
+    } else if (MessagesReceived > 3) {
+        mySprite.sayText(":)")
     }
     MessagesReceived += 1
 }
@@ -656,16 +642,37 @@ function collect () {
         list.push("seagrass")
     }
 }
+function plastic2 () {
+    plastic = sprites.create(img`
+        6 1 1 1 1 6 1 1 1 1 1 6 1 1 1 1 
+        6 1 6 6 1 6 1 6 6 6 1 6 1 6 6 1 
+        8 1 6 8 1 6 1 6 6 6 1 6 1 6 6 1 
+        6 1 6 6 1 8 1 6 6 6 1 6 1 6 6 1 
+        6 1 1 1 1 6 1 1 1 1 1 9 1 1 1 1 
+        9 9 1 1 6 9 6 1 1 1 6 9 6 1 1 8 
+        9 8 1 1 1 1 1 1 1 1 1 1 1 1 1 8 
+        9 9 1 1 1 1 1 1 1 1 1 1 1 1 1 9 
+        8 8 1 1 1 1 1 1 1 1 1 1 1 1 1 9 
+        9 9 1 1 1 1 1 1 1 1 1 1 1 1 1 8 
+        8 9 1 1 9 8 9 1 1 1 9 8 9 1 1 9 
+        9 1 1 1 1 9 1 1 1 1 1 9 1 1 1 1 
+        9 1 9 9 1 9 1 9 9 9 1 9 1 9 8 1 
+        8 1 9 8 1 9 1 9 8 9 1 9 1 8 8 1 
+        9 1 8 9 1 8 1 9 9 8 1 9 1 9 9 1 
+        9 1 1 1 1 9 1 1 1 1 1 9 1 1 1 1 
+        `, SpriteKind.Enemy)
+    tiles.placeOnTile(plastic, tiles.getTileLocation(55, 1))
+}
+let plastic: Sprite = null
 let shark: Sprite = null
-let MessagesReceived = 0
 let list: string[] = []
 let mySprite2: Sprite = null
-let plastic: Sprite = null
+let MessagesReceived = 0
 let mySprite: Sprite = null
 setupGame()
 collect()
 sharkfollow()
-p()
+plastic2()
 forever(function () {
     if (shark.tilemapLocation().column == 12 && shark.tilemapLocation().row == 5) {
         tiles.setCurrentTilemap(tilemap`level2`)
