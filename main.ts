@@ -549,23 +549,30 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (mySprite.tileKindAt(TileDirection.Right, assets.tile`myTile7`)) {
         quest(1)
+        game.splash("you have collected the seagrass and rock")
+        MessagesReceived += 4
     } else if (mySprite.tileKindAt(TileDirection.Top, assets.tile`myTile7`)) {
         collect()
         game.splash("you have collected the seagrass and rock")
+        MessagesReceived += 4
     } else if (mySprite.tileKindAt(TileDirection.Left, assets.tile`myTile0`)) {
         quest(1)
     } else if (mySprite.tileKindAt(TileDirection.Left, assets.tile`myTile7`)) {
         collect()
         game.splash("you have collected the seagrass and rock")
+        MessagesReceived += 4
     } else if (mySprite.tileKindAt(TileDirection.Right, assets.tile`myTile7`)) {
         collect()
         game.splash("you have collected the seagrass and rock")
+        MessagesReceived += 4
     } else if (mySprite.tileKindAt(TileDirection.Bottom, assets.tile`myTile7`)) {
         collect()
         game.splash("you have collected the seagrass and rock")
+        MessagesReceived += 4
     } else if (mySprite.tileKindAt(TileDirection.Center, assets.tile`myTile7`)) {
         collect()
         game.splash("you have collected the seagrass and rock")
+        MessagesReceived += 4
     }
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -1569,6 +1576,9 @@ function quest (num: number) {
         2000,
         false
         )
+    } else if (MessagesReceived > 3) {
+        mySprite.sayText("I got the stuff Minster Shady what is next")
+        pause(2000)
     }
     MessagesReceived += 1
 }
@@ -2200,12 +2210,14 @@ function collect () {
         list.push("seagrass")
     }
 }
-let MessagesReceived = 0
 let list: string[] = []
 let mySprite2: Sprite = null
 let plastic: Sprite = null
+let MessagesReceived = 0
 let shark: Sprite = null
 let mySprite: Sprite = null
+game.splash("lose the shark in the coral ")
+game.splash("the shark will follow you after a is pressed")
 setupGame()
 collect()
 sharkfollow()
