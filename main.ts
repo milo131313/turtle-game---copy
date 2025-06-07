@@ -1556,6 +1556,9 @@ function quest (num: number) {
         game.splash("hey squirt you want to be able to protect yourself")
         game.splash("then do some quest for me ")
         game.splash("the first thing I need you to do for me is to get me a stone and some......some sea grass to prove your loyalty to me ")
+        for (let index = 0; index < 3; index++) {
+            music.play(music.createSoundEffect(WaveShape.Square, 641, 0, 153, 0, 1000, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.UntilDone)
+        }
         game.splash("MINSTER SHADY!!!!!!!!!")
     } else if (MessagesReceived == 1) {
         game.splash("GET BACK TO WORK OR ELSE SQUIRT!!!!!")
@@ -2210,6 +2213,9 @@ setupGame()
 collect()
 sharkfollow()
 p()
+for (let index = 0; index < 5; index++) {
+    music.play(music.stringPlayable("E B C5 A B G A F ", 250), music.PlaybackMode.UntilDone)
+}
 forever(function () {
     if (shark.tilemapLocation().column == 12 && shark.tilemapLocation().row == 5) {
         tiles.setCurrentTilemap(tilemap`level2`)
